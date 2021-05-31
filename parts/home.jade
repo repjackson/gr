@@ -1,0 +1,81 @@
+template(name='home')
+    .ui.stackable.padded.centered.grid
+        .one.column.row
+            .center.aligned.column
+                .ui.button.f20.lower
+                    |40lbs plastic prevented
+                .ui.button.f20.lower
+                    |40lbs orders
+                .ui.button.f20.lower
+                    |10 users
+                .ui.button.f20.lower
+                    |234 products
+                .ui.big.header.f20.lower
+                    |{{lower "we deliver local, organic groceries, meals and household products in zero-waste, reusable containers to your door by bicycles"}}
+
+        .one.column.row
+            .center.aligned.column
+                .ui.header start shopping zero waste!
+
+        .four.column.row
+            a.center.aligned.column.zoomer(href="/shop")
+                img.ui.circular.image(src="https://nudefoodsmarket.com/wp-content/uploads/2020/09/localbites300x300-300x300.jpg")
+                // +i name='shopping-cart' cl='ui inline image'
+                // i.food.icon
+                .ui.header local bites
+            a.center.aligned.column.zoomer(href="/shop") 
+                // i.users.icon
+                img.ui.circular.image(src="https://nudefoodsmarket.com/wp-content/uploads/2020/09/Producebox300x300-300x300.jpg")
+                // +i name='conference' cl='ui inline image'
+                .ui.header ugly produce
+            a.center.aligned.column.zoomer(href="/shop")
+                img.ui.circular.image(src="https://nudefoodsmarket.com/wp-content/uploads/2020/09/buildyourown600x600-300x300.jpg")
+                .ui.header pantry staples
+            a.center.aligned.column.zoomer(href="/shop")
+                img.ui.circular.image(src="https://nudefoodsmarket.com/wp-content/uploads/2020/10/Lemony-Lentil-Soup-e1604278933195.jpg")
+                .ui.header nude meals
+        .one.column.row
+            // .center.aligned.column
+            //     a.ui.big.basic.circular.button(href="/shop")
+            //         +i name='shopping-cart' cl='ui inline image'
+            //         // i.food.icon
+            //         |shop
+            //     a.ui.big.basic.circular.button(href="/users") 
+            //         // i.users.icon
+            //         +i name='conference' cl='ui inline image'
+            //         |users
+            //     a.ui.big.basic.circular.button(href="/staff")
+            //         // i.shield.icon
+            //         +i name='employee-card' cl='ui inline image'
+            //         |staff
+            // .center.aligned.column
+            //     a.ui.icon.header(href="/staff")
+            //         // i.shield.icon
+            //         +i name='employee-card' cl='icon zoomer'
+            //         |staff
+                a.ui.icon.header(href="/shop")
+                    +i name='sell' cl='icon zoomer'
+                    // i.food.icon
+                    |become a seller
+                a.ui.icon.header(href="/orders")
+                    +i name='bill' cl='icon zoomer'
+                    // i.list.icon
+                    |orders
+                a.ui.icon.header(href="/inbox")
+                    +i name='inbox' cl='icon zoomer'
+                    // i.mail.icon
+                    |inbox
+        // .one.column.row
+        //     .center.aligned.column
+        //         .ui.header 
+        //             i.shield.icon
+        //             |admin
+        //         a.ui.big.basic.disabled.button(href="/inventory")
+        //             +i name='list' cl='ui inline image'
+        //             |inventory
+        //         a.ui.big.basic.disabled.button(href="/bikers")
+        //             +i name='cycling-road' cl='ui inline image'
+        //             |bikers
+        //         a.ui.big.basic.disabled.button(href="/trips")
+        //             +i name='time-machine' cl='ui inline image'
+        //             |trips
