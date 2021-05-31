@@ -83,17 +83,17 @@ template(name='user_layout')
 
 template(name='user_dashboard')
     .ui.three.stackable.cards
-        .ui.card
-            .content
-                .ui.header $ earned
+        // .ui.card
+        //     .content
+        //         .ui.header $ earned
         .ui.card
             .content
                 .ui.header $ spent
-        .ui.card
-            .content
-                .ui.header profit rate
-                .ui.header avg hourly
-                .ui.header fed comparison
+        // .ui.card
+        //     .content
+        //         .ui.header profit rate
+        //         .ui.header avg hourly
+        //         .ui.header fed comparison
         .ui.card
             .content
                 .ui.header
@@ -102,20 +102,13 @@ template(name='user_dashboard')
                 .ui.list 
                     each user_orders
                         .item #{when}
-        .ui.card
-            .content
-                a.header(href="/user/#{username}/friends")
-                    +i name='groups' cl='ui avatar image'
-                    |friends
-                .ui.big.green.icon.button
-                    i.checkmark.icon
-        .ui.card
-            .content
-                a.header(href="/user/#{username}/mail")
-                    +i name='envelope' cl='ui avatar image'
-                    |mail
-                .ui.big.green.icon.circular.button
-                    i.plus.icon
+        // .ui.card
+        //     .content
+        //         a.header(href="/user/#{username}/mail")
+        //             +i name='envelope' cl='ui avatar image'
+        //             |mail
+        //         .ui.big.green.icon.circular.button
+        //             i.plus.icon
         .ui.card
             .content
                 a.header(href="/user/#{username}/subs")
@@ -123,11 +116,6 @@ template(name='user_dashboard')
                     |subs
                 each user_subs
                     .ui.header #{when}
-        .ui.card
-            .content
-                .ui.header
-                    i.tasks.icon
-                    |tasks
         .ui.card
             .content
                 a.header(href="/user/#{username}/deliveries")

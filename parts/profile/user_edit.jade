@@ -24,8 +24,11 @@ template(name='user_edit')
                                 |delete user
                 .eight.wide.column
                     .ui.form
-                        +text_edit key='first_name' label='first name' direct=true
-                        +text_edit key='last_name' label='last name' direct=true
+                        +text_edit key='name' label='name' direct=true
+                        +text_edit key='location' label='name' direct=true
+                        +image_edit key='dropoff_image' label='dropoff image' direct=true
+                        +image_edit key='delivery_instructions' label='delivery instructions' direct=true
+                        
                         div
                         .ui.header 
                             i.envelope.outline.icon

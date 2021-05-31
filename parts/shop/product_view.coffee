@@ -33,13 +33,28 @@ if Meteor.isClient
         @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
         # @autorun => Meteor.subscribe 'product_from_product_id', Router.current().params.doc_id
         @autorun => Meteor.subscribe 'orders_from_product_id', Router.current().params.doc_id
-        @autorun => Meteor.subscribe 'subs_from_product_id', Router.current().params.doc_id
+        # @autorun => Meteor.subscribe 'subs_from_product_id', Router.current().params.doc_id
     Template.product_layout.onRendered ->
         Meteor.call 'log_view', Router.current().params.doc_id
         # @autorun => Meteor.subscribe 'ingredients_from_product_id', Router.current().params.doc_id
 
 
     Template.product_layout.events
+        'click .buy_now': ->
+            Swal.fire({
+                title: 'confirm purchase'
+                text: "$#{@price}"
+                icon: 'question'
+                showCancelButton: true,
+                confirmButtonText: 'confirm'
+                cancelButtonText: 'cancel'
+            }).then((result) =>
+                Docs.insert 
+                    model:'order'
+                    product_id: @_id
+                    status:'submitted'
+                    purchase_price: @price
+            )
         'click .subscribe': ->
             if confirm 'subscribe?'
                 Docs.update Router.current().params.doc_id,
