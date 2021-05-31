@@ -45,10 +45,6 @@ template(name='user_layout')
                                     // +i name='check' cl='ui avatar image'
                                     i.list.icon
                                     |orders
-                                a.item(href="/user/#{username}/friends" class="{{isActiveRoute 'user_friends'}}")
-                                    // +i name='friends' cl='ui avatar image'
-                                    i.users.icon
-                                    |friends
                                 a.item(href="/user/#{username}/cart" class="{{isActiveRoute 'user_cart'}}")
                                     // +i name='shopping-cart' cl='ui avatar image'
                                     i.cart.icon
@@ -61,14 +57,6 @@ template(name='user_layout')
                                     // +i name='clock' cl='ui avatar image'
                                     i.clock.icon
                                     |subscriptions
-                                a.item(href="/user/#{username}/addresses" class="{{isActiveRoute 'user_addresses'}}")
-                                    // +i name='marker' cl='ui avatar image'
-                                    i.marker.icon
-                                    |addresses
-                                a.item(href="/user/#{username}/giftcards" class="{{isActiveRoute 'user_giftcards'}}")
-                                    // +i name='certificate' cl='ui avatar image'
-                                    i.certificate.icon
-                                    |gift cards
                             if is_current_user
                                 a.ui.basic.compact.button(href="/user/#{user_from_username_param.username}/edit" title='profile settings')
                                     i.cog.icon
@@ -77,8 +65,6 @@ template(name='user_layout')
                                 a.ui.basic.compact.button(href="/user/#{user_from_username_param.username}/edit" title='profile settings')
                                     +i name='settings' cl='ui avatar image'
                                     |edit profile
-                            unless is_current_user
-                                +friend_button
                             if is_current_user
                                 .ui.basic.compact.button.logout
                                     i.sign.out.alternate.icon
