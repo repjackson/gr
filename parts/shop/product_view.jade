@@ -140,6 +140,15 @@ template(name='product_order_card')
             .ui.small.compact.basic.button.cancel_order(title='cancel')
                 i.remove.red.icon
                 |cancel
+        if prep_started
+            +icolor name='new-product--v1' cl='ui avatar image'
+        if prep_started
+            +icolor name='new-product--v1' cl='ui avatar image'
+        if arrived
+            +icolor name='checked-truck' cl='ui inline image'
+        if delivery_photo
+            +image_view key='delivery_photo' direct=true
+
 
 
 
