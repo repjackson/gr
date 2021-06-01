@@ -13,8 +13,10 @@ template(name='product_edit')
                     +image_edit key='image_id' label='image' direct=true
                     +link_edit key='product_link' label='nudefoods link' direct=true
                     div
-                    +float_edit key='nf_price' label='nf price $' direct=true
-                    +float_edit key='gfr_price' label='gfr price $' direct=true
+                    if food
+                        +float_edit key='nf_price' label='nf price $' direct=true icon='food'
+                    div
+                    +float_edit key='gfr_price' label='gfr price $' direct=true icon='building'
                 .ten.wide.column
                     +boolean_edit key='food' label='food' direct=true icon='food'
                     +boolean_edit key='book' label='book' direct=true icon='book'

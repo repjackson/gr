@@ -1,6 +1,6 @@
 template(name='nav')
     // https://fomantic-ui.com/elements/icon.html#/icon
-    #topnav.topnav.ui.attached.borderless.inverted.menu
+    #topnav.topnav.ui.attached.borderless.inverted.large.menu
         // if is_loading
         //     .icon.item
         //         i.big.loading.grey.food.icon.cancel
@@ -8,9 +8,9 @@ template(name='nav')
         //     a.icon.item.toggle_sidebar.no_blink
         //         i.bars.large.icon
                 
-        a.ui.header.item.zoomer(href='/')
+        a.header.item.zoomer(href='/')
             // +i name='food' cl='ui inline mini image'
-            i.home.cart.icon
+            i.home.user.icon
             | gold run market
             // span.mobile.hidden nude foods market
         .right.menu

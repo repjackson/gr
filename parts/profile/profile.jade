@@ -82,47 +82,44 @@ template(name='user_layout')
 
 
 template(name='user_dashboard')
-    .ui.three.stackable.cards
+    // .ui.three.stackable.cards
         // .ui.card
         //     .content
         //         .ui.header $ earned
-        .ui.card
-            .content
-                .ui.header $ spent
+    .ui.card
+        .content
+            .ui.header $ spent
         // .ui.card
         //     .content
         //         .ui.header profit rate
         //         .ui.header avg hourly
         //         .ui.header fed comparison
-        .ui.card
-            .content
-                .ui.header
-                    +i name='check' cl='ui avatar image'
-                    |orders
-                .ui.list 
-                    each user_orders
-                        .item #{when}
-        // .ui.card
-        //     .content
-        //         a.header(href="/user/#{username}/mail")
-        //             +i name='envelope' cl='ui avatar image'
-        //             |mail
-        //         .ui.big.green.icon.circular.button
-        //             i.plus.icon
-        .ui.card
-            .content
-                a.header(href="/user/#{username}/subs")
-                    +i name='clock' cl='ui avatar image'
-                    |subscriptions
-                each user_subs
-                    .ui.header #{when}
-        .ui.card
-            .content
-                a.header(href="/user/#{username}/deliveries")
-                    i.bicycle.icon
-                    |deliveries
-                each delivery_docs
-                    .ui.header #{when}
+    .ui.fluid.card
+        .content
+            .ui.header
+                i.receipt.icon
+                |orders
+            .ui.selection.link.animated.list 
+                each user_orders
+                    a.item(href="/order/#{_id}/view") 
+                        .ui.basic.label
+                            i.clock.icon
+                            |#{status}
+                        |#{when}
+    .ui.card
+        .content
+            a.header(href="/user/#{username}/subs")
+                +i name='clock' cl='ui avatar image'
+                |subscriptions
+            each user_subs
+                .ui.header #{when}
+    .ui.card
+        .content
+            a.header(href="/user/#{username}/deliveries")
+                i.bicycle.icon
+                |deliveries
+            each delivery_docs
+                .ui.header #{when}
                     
                     
                     

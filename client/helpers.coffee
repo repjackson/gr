@@ -9,6 +9,11 @@ Template.registerHelper 'model_docs', (model) ->
     Docs.find 
         model:model
     # Template.parentData()
+Template.registerHelper 'user_orders', (model) ->
+    Docs.find 
+        model:'order'
+        _author_username: Router.current().params.username
+    # Template.parentData()
 
 Template.registerHelper 'cart_subtotal', () -> 
     store_session_document = 

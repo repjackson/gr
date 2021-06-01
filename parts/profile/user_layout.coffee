@@ -49,6 +49,7 @@ if Meteor.isClient
     Template.user_layout.onCreated ->
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_referenced_docs', Router.current().params.username
+        @autorun -> Meteor.subscribe 'user_orders', Router.current().params.username
 
     Template.user_layout.onRendered ->
         Meteor.setTimeout ->
@@ -74,3 +75,12 @@ if Meteor.isClient
         'click .logout': ->
             Router.go '/login'
             Meteor.logout()
+
+
+
+if Meteor.isServer
+    Meteor.publish 'user_orders', (username)->
+        user = Meteor.users.findOne username:username
+        Docs.find
+            model:'order'
+            _author_id:user._id
