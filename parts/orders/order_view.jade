@@ -36,46 +36,67 @@ template(name='order_view')
                         i.shield.icon
                         |runner
                     unless runner_viewed
-                        .ui.button.mark_viewed
+                        .ui.basic.circular.button.mark_viewed
+                            +icolor name='eye-checked' cl='ui avatar image'
                             |mark viewed
-                    else 
-                        .ui.header viewed at {{from_now runner_viewed_timestamp}} {{cal_time runner_viewed_timestamp}}
-                    unless prep_started
-                        .ui.button.mark_prep_started
+                    if runner_viewed 
+                        div
+                        +icolor name='eye-checked' cl='ui avatar image'
+                        .ui.inline.header viewed at {{from_now runner_viewed_timestamp}} {{cal_time runner_viewed_timestamp}}
+                        div
+                        .ui.basic.circular.button.mark_preparing
                             +icolor name='new-product--v1' cl='ui avatar image'
-                            |mark preparation started
-                    else 
+                            |preparing
+                    if preparing 
                         div
                         +icolor name='new-product--v1' cl='ui inline image'
-                        .ui.inline.header prep started at {{from_now prep_started_timestamp}} {{cal_time prep_started_timestamp}}
-                    .ui.button.mark_processed
-                        |mark prepared
-                    .ui.button.mark_delivery_started
-                        |mark delivery started
-                    unless arrived
-                        .ui.button.mark_arrived
-                            |mark arrived
-                    else 
+                        .ui.inline.header prep started at {{from_now preparing_timestamp}} {{cal_time preparing_timestamp}}
+                        div
+                        .ui.basic.circular.button.mark_prepared
+                            +icolor name='handle-with-care' cl='ui avatar image'
+                            |prepared
+                        div
+                        .ui.basic.circular.button.mark_prepared
+                            +icolor name='handle-with-care' cl='ui avatar image'
+                            |prepared
+                    if prepared 
+                        div
+                        +icolor name='truck' cl='ui inline image'
+                        .ui.inline.header started delivery at {{from_now delivering_timestamp}} {{cal_time delivering_timestamp}}
+                        div
+                        .ui.basic.circular.button.mark_delivering
+                            i.truck.icon
+                            |delivering
+                    if delivering 
+                        div
+                        +icolor name='truck' cl='ui inline image'
+                        .ui.inline.header started delivery at {{from_now delivering_timestamp}} {{cal_time delivering_timestamp}}
+                        
+                        div
+                        .ui.basic.circular.button.mark_arrived
+                            i.marker.icon
+                            |arrived
+                    if arrived 
                         div
                         +icolor name='checked-truck' cl='ui inline image'
                         .ui.inline.header arrived at {{from_now arrived_timestamp}} {{cal_time arrived_timestamp}}
-                    
-                    .ui.button.mark_delivery_complete
-                        i.checkmark.icon
-                        |mark delivery complete
-                    if arrived
                         +image_edit key='delivery_photo' direct=true
-                        .ui.header {{from_now arrived}} {{cal_time arrived}}
-                    
-                    if is_admin
-                        +kvs key='status' value='started' label='mark started' direct=true
-                        if kve status 'started'
-                            +kvs key='status' value='ready' label='mark ready' direct=true
-                            +kvs key='status' value='picked_up' label='picked up' direct=true
+                        if delivery_photo                        
+                            div
+                            .ui.basic.circular.button.mark_delivery_complete
+                                i.large.checkmark.icon
+                                |delivered
                     div
                     .ui.inline.header 
                         i.user.outline.icon
                         |customer
+                    if delivered
+                        if is_author
+                            +kvs key='status' value='picked_up' label='picked up' direct=true
+                            .ui.basic.circular.button.mark_arrived
+                                +icolor name='pick-up' cl='ui inline image'
+                                |mark picked up
+                            
                     +kvs key='status' value='picked_up' label='mark picked up' direct=true
                     with buyer
                         +user_card

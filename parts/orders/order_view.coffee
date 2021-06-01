@@ -14,31 +14,46 @@ if Meteor.isClient
 
     Template.order_view.events
         'click .mark_viewed': ->
-            if confirm 'mark viewed?'
-                Docs.update Router.current().params.doc_id, 
-                    $set:
-                        runner_viewed: true
-                        runner_viewed_timestamp: Date.now()
-                        runner_username: Meteor.user().username
-                        status: 'viewed by runner' 
-        'click .mark_prep_started': ->
-            if confirm 'mark mark_prep_started?'
-                Docs.update Router.current().params.doc_id, 
-                    $set:
-                        prep_started: true
-                        prep_started_timestamp: Date.now()
-                        status: 'preparation started' 
+            # if confirm 'mark viewed?'
+            Docs.update Router.current().params.doc_id, 
+                $set:
+                    runner_viewed: true
+                    runner_viewed_timestamp: Date.now()
+                    runner_username: Meteor.user().username
+                    status: 'viewed by runner' 
+      
+        'click .mark_preparing': ->
+            # if confirm 'mark mark_preparing?'
+            Docs.update Router.current().params.doc_id, 
+                $set:
+                    prep_started: true
+                    prep_started_timestamp: Date.now()
+                    status: 'preparing' 
+       
+        'click .mark_prepared': ->
+            # if confirm 'mark prepared?'
+            Docs.update Router.current().params.doc_id, 
+                $set:
+                    prepared: true
+                    prepared_timestamp: Date.now()
+                    status: 'prepared' 
+     
         'click .mark_arrived': ->
-            if confirm 'mark arrived?'
-                Docs.update Router.current().params.doc_id, 
-                    $set:
-                        arrived: true
-                        arrived_timestamp: Date.now()
-                        status: 'preparation started' 
-                # Docs.insert 
-                #     model:'order_event'
-                #     order_id: Router.current().params.doc_id
-                #     order_status:'ready'
+            # if confirm 'mark arrived?'
+            Docs.update Router.current().params.doc_id, 
+                $set:
+                    arrived: true
+                    arrived_timestamp: Date.now()
+                    status: 'arrived' 
+        
+        'click .mark_delivered': ->
+            # if confirm 'mark delivered?'
+            Docs.update Router.current().params.doc_id, 
+                $set:
+                    delivered: true
+                    delivered_timestamp: Date.now()
+                    status: 'delivered' 
+      
         'click .cancel_order': ->
             if confirm 'cancel?'
                 Docs.remove @_id
