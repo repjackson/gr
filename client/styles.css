@@ -236,9 +236,9 @@ img {
     /*border-radius: 10px !important;*/
 }
 
-#topnav {
-    border-radius: 0px 0px 10px 10px !important;
-}
+/*#topnav {*/
+/*    border-radius: 0px 0px 10px 10px !important;*/
+/*}*/
 .hour_picked {
     /* outline: lightgreen solid 2px !important; */
     filter: drop-shadow(2px 2px 5px rgba(200,200,200,.7)) !important;
