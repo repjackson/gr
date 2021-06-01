@@ -25,8 +25,9 @@ template(name='product_edit')
                     +boolean_edit key='jar' label='jar container (requires deposit & return)' direct=true icon='mason-jar'
                     +number_edit key='calories' label='calories' direct=true
                     div
+                    +number_edit key='delivery_estimate_hours' label='estimated delivery hours' direct=true
                     +array_edit key='ingredients' label='ingredients'  direct=true
-                    +array_edit key='location_tags' label='location tags' direct=true
+                    // +array_edit key='location_tags' label='location tags' direct=true
                     +text_edit key='size_description' label='size description'  direct=true
                     +html_edit key='description' label='description' direct=true
                     if can_delete

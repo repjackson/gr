@@ -19,11 +19,13 @@ template(name='order_view')
                     //     |#{order_product.title}
                     .ui.inline.header 
                         // strong '#{order_product.title}'
-                        |order
+                        |order (#{status})
                     if can_edit
                         a(href="/order/#{_id}/edit" title='edit')
                             i.pencil.link.large.circular.icon
-                    .ui.header buyer #{_author_username}
+                    .ui.segment
+                        .ui.header buyer:
+                        a.ui.header(href="/user/#{_author_username}") #{_author_username}
                     .ui.header 
                         i.clock.icon
                         |when #{when}
@@ -32,7 +34,39 @@ template(name='order_view')
                     .ui.header status: #{status}
                     .ui.header 
                         i.shield.icon
-                        |admin
+                        |runner
+                    unless runner_viewed
+                        .ui.button.mark_viewed
+                            |mark viewed
+                    else 
+                        .ui.header viewed at {{from_now runner_viewed_timestamp}} {{cal_time runner_viewed_timestamp}}
+                    unless prep_started
+                        .ui.button.mark_prep_started
+                            +icolor name='new-product--v1' cl='ui avatar image'
+                            |mark preparation started
+                    else 
+                        div
+                        +icolor name='new-product--v1' cl='ui inline image'
+                        .ui.inline.header prep started at {{from_now prep_started_timestamp}} {{cal_time prep_started_timestamp}}
+                    .ui.button.mark_processed
+                        |mark prepared
+                    .ui.button.mark_delivery_started
+                        |mark delivery started
+                    unless arrived
+                        .ui.button.mark_arrived
+                            |mark arrived
+                    else 
+                        div
+                        +icolor name='checked-truck' cl='ui inline image'
+                        .ui.inline.header arrived at {{from_now arrived_timestamp}} {{cal_time arrived_timestamp}}
+                    
+                    .ui.button.mark_delivery_complete
+                        i.checkmark.icon
+                        |mark delivery complete
+                    if arrived
+                        +image_edit key='delivery_photo' direct=true
+                        .ui.header {{from_now arrived}} {{cal_time arrived}}
+                    
                     if is_admin
                         +kvs key='status' value='started' label='mark started' direct=true
                         if kve status 'started'
