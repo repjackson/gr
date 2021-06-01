@@ -62,11 +62,6 @@ if Meteor.isClient
     #         "user_#{Router.current().params.group}"
 
     Template.user_layout.helpers
-        user_from_username_param: ->
-            Meteor.users.findOne username:Router.current().params.username
-
-        user: ->
-            Meteor.users.findOne username:Router.current().params.username
 
     Template.user_layout.events
         'click .logout_other_clients': ->

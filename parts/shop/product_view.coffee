@@ -50,11 +50,13 @@ if Meteor.isClient
                     confirmButtonText: 'confirm'
                     cancelButtonText: 'cancel'
                 }).then((result) =>
-                    Docs.insert 
-                        model:'order'
-                        product_id: @_id
-                        status:'submitted'
-                        purchase_price: @price
+                    new_order_id = 
+                        Docs.insert 
+                            model:'order'
+                            product_id: @_id
+                            status:'submitted'
+                            purchase_price: @price
+                    Router.go "/order/#{new_order_id}"
                 )
             else 
                 Swal.fire({

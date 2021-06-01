@@ -9,6 +9,15 @@ Template.registerHelper 'model_docs', (model) ->
     Docs.find 
         model:model
     # Template.parentData()
+    
+Template.registerHelper 'user_from_username_param', (model) ->
+    Meteor.users.findOne username:Router.current().params.username
+
+Template.registerHelper 'user', (model) ->
+    Meteor.users.findOne username:Router.current().params.username
+
+    
+    
 Template.registerHelper 'user_orders', (model) ->
     Docs.find 
         model:'order'

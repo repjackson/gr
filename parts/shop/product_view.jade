@@ -10,7 +10,7 @@ template(name='product_layout')
                         .six.wide.column
                             a.ui.basic.circular.icon.button(href="/shop")
                                 i.chevron.left.large.icon
-                                i.large.food.icon
+                                i.large.store.icon
                                 // +i name='food' cl='ui mini inline image'
                         
                             .ui.large.inline.header 
@@ -44,7 +44,7 @@ template(name='product_layout')
                         .ten.wide.column
                             .ui.big.fluid.green.circular.button.buy_now
                                 i.cart.plus.large.icon
-                                |buy now for #{grm_price}
+                                |buy for $#{grm_price}
                             a.ui.basic.circular.compact.button(href="/product/#{_id}/" class="{{isActiveRoute 'product_main'}}")
                                 i.content.icon
                                 |description
@@ -68,14 +68,6 @@ template(name='product_layout')
                                 i.shield.icon
                                 |inventory
                             // .ui.header your orders
-                            .ui.header 
-                                +i name='order-history'
-                                |#{product_orders.count}
-                                |orders
-                                |(${{fixed product_order_total}})
-                            .ui.basic.segments
-                                each product_orders
-                                    +product_order_card
                             .ui.hidden.divider
 
                             +yield
@@ -118,10 +110,14 @@ template(name='product_subscriptions')
 
 
 template(name='product_orders')                            
-    if can_order
-        +order_button
-    each subs
-        .ui.header #{_author_username}
+    .ui.header 
+        +i name='order-history'
+        |#{product_orders.count}
+        |orders
+        |(${{fixed product_order_total}})
+    .ui.basic.segments.scrolling
+        each product_orders
+            +product_order_card
 
          
          
@@ -134,30 +130,33 @@ template(name='product_order_card')
                 img.ui.avatar.image(src="{{c.url _author.image_id width=100 height=100 gravity='face' crop='fill'}}")
             |#{_author.username}
         // div
-        .ui.big.basic.label(title='status')
+        .ui.big.basic.circular.label(title='status')
             i.clock.icon
             | #{status}
         .ui.small.inline.header
             | #{when} ({{long_date _timestamp}})
-        a.ui.compact.big.icon.button(href="/order/#{_id}")
+        a.ui.compact.big.basic.circular.icon.button(href="/order/#{_id}")
             i.right.chevron.large.icon
         if is_author
-            .ui.small.compact.basic.button.cancel_order(title='cancel')
+            .ui.small.compact.circular.basic.button.cancel_order(title='cancel')
                 i.remove.red.icon
                 |cancel
-        if runner_viewed
-            +icolor name='eye-checked' cl='ui avatar image'
-        if preparing
-            +icolor name='new-product--v1' cl='ui avatar image'
-        if prepared
-            +icolor name='handle-with-care' cl='ui inline image'
-        if arrived
-            +icolor name='checked-truck' cl='ui inline image'
-        if delivered
-            +icolor name='checkmark' cl='ui inline image'
-        
-        if delivery_photo
-            +image_view key='delivery_photo' direct=true cl='ui small image'
+        +order_status_icons
+                
+template(name='order_status_icons')                
+    if runner_viewed
+        +icolor name='eye-checked' cl='ui avatar image'
+    if preparing
+        +icolor name='new-product--v1' cl='ui avatar image'
+    if prepared
+        +icolor name='handle-with-care' cl='ui inline image'
+    if arrived
+        +icolor name='checked-truck' cl='ui inline image'
+    if delivered
+        +icolor name='checkmark' cl='ui inline image'
+    
+    if delivery_photo
+        +image_view key='delivery_photo' direct=true cl='ui small image'
 
 
 

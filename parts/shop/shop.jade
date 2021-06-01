@@ -11,7 +11,7 @@ template(name='shop')
                     i.search.icon
                 input#product_search(type='text' placeholder='title...' value=product_query)
             if currentUser
-                a.ui.icon.button.add_product(title='cook')
+                a.ui.icon.circular.basic.compact.button.add_product(title='cook')
                     i.plus.green.large.icon
             
             // .ui.left.icon.search.input
@@ -20,6 +20,8 @@ template(name='shop')
             // if picked_ingredient_plural
             //     .ui.icon.black.compact.button.clear_picked_ingredients
             //         i.remove.icon
+            .ui.basic.icon.circular.button.toggle_food(class=toggle_gf_class)
+                +icolor name='food' cl='ui mini inline image'
             .ui.basic.icon.circular.button.toggle_gf(class=toggle_gf_class)
                 +icolor name='no-gluten' cl='ui mini inline image'
             .ui.basic.icon.circular.button.toggle_vegan(class=toggle_vegan_class)
@@ -137,11 +139,12 @@ template(name='set_product_limit')
 template(name='product_card')
     .center.aligned.column.zoomer.rounded(class=product_card_class title=ingredients)
         if rescued 
-            .ui.top.right.attached.blue.label rescued
+            .ui.bottom.right.attached.blue.label rescued
         if local 
-            .ui.top.right.attached.orange.label local
+            .ui.top.right.attached.green.corner.basic.label(title='local')
+                i.marker.icon
         a(href="/product/#{_id}") 
-            img.ui.rounded.image(src="{{c.url image_id width=400 height=300 crop='pad'}}")
+            img.ui.rounded.image(src="{{c.url image_id width=400 height=300 crop='fit'}}")
         .content
             a.ui.inline.header(href="/product/#{_id}") 
                 //- |#{_author.name}'s

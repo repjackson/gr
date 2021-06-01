@@ -99,13 +99,16 @@ template(name='user_dashboard')
             .ui.header
                 i.receipt.icon
                 |orders
-            .ui.selection.link.animated.list 
+            .ui.cards 
                 each user_orders
-                    a.item(href="/order/#{_id}/view") 
-                        .ui.basic.label
-                            i.clock.icon
-                            |#{status}
-                        |#{when}
+                    a.ui.card(href="/order/#{_id}")
+                        .content
+                            .ui.basic.label
+                                i.clock.icon
+                                |#{status}
+                            |#{when}
+                            +order_status_icons
+                        
     .ui.card
         .content
             a.header(href="/user/#{username}/subs")
