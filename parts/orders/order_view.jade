@@ -11,6 +11,9 @@ template(name='order_view')
                             //- .ui.header #{cook_tip} cook tip
                             // .ui.header $#{order_total_transaction_amount} 
                             //     small total transaction amount
+                    .ui.segment
+                        .ui.header buyer:
+                        a.ui.header(href="/user/#{_author_username}") #{_author_username}
                     div
                 .eight.wide.column
                     // a.ui.compact.button(href="/product/#{product_id}")
@@ -20,18 +23,14 @@ template(name='order_view')
                     .ui.inline.header 
                         // strong '#{order_product.title}'
                         |order (#{status})
+                    .ui.inline.small.grey.header 
+                        i.clock.icon
+                        |when #{when}
                     if can_edit
                         a(href="/order/#{_id}/edit" title='edit')
                             i.pencil.link.large.circular.icon
-                    .ui.segment
-                        .ui.header buyer:
-                        a.ui.header(href="/user/#{_author_username}") #{_author_username}
-                    .ui.header 
-                        i.clock.icon
-                        |when #{when}
                     if kve 'when' 'later'
                         +datetime_view key='pickup_datetime'
-                    .ui.header status: #{status}
                     .ui.header 
                         i.shield.icon
                         |runner
@@ -42,7 +41,8 @@ template(name='order_view')
                     if runner_viewed 
                         div
                         +icolor name='eye-checked' cl='ui avatar image'
-                        .ui.inline.header viewed at {{from_now runner_viewed_timestamp}} {{cal_time runner_viewed_timestamp}}
+                        .ui.inline.header viewed {{from_now runner_viewed_timestamp}} 
+                        .ui.small.grey.inline.header {{cal_time runner_viewed_timestamp}}
                         div
                         unless preparing
                             .ui.basic.circular.large.button.mark_preparing
@@ -51,7 +51,8 @@ template(name='order_view')
                     if preparing 
                         div
                         +icolor name='new-product--v1' cl='ui inline image'
-                        .ui.inline.header prep started at {{from_now preparing_timestamp}} {{cal_time preparing_timestamp}}
+                        .ui.inline.header prep started {{from_now preparing_timestamp}} 
+                        .ui.small.grey.inline.header {{cal_time preparing_timestamp}}
                         div
                         unless prepared
                             .ui.basic.circular.large.button.mark_prepared
@@ -60,7 +61,8 @@ template(name='order_view')
                     if prepared 
                         div
                         +icolor name='handle-with-care' cl='ui inline image'
-                        .ui.inline.header prepared at {{from_now prepared_timestamp}} {{cal_time prepared_timestamp}}
+                        .ui.inline.header prepared {{from_now prepared_timestamp}} 
+                        .ui.small.grey.inline.header {{cal_time prepared_timestamp}}
                         div
                         unless delivering
                             .ui.basic.circular.large.button.mark_delivering
@@ -69,7 +71,8 @@ template(name='order_view')
                     if delivering 
                         div
                         +icolor name='truck' cl='ui inline image'
-                        .ui.inline.header started delivery at {{from_now delivering_timestamp}} {{cal_time delivering_timestamp}}
+                        .ui.inline.header started delivery {{from_now delivering_timestamp}} 
+                        .ui.small.grey.inline.header {{cal_time delivering_timestamp}}
                         
                         div
                         unless arrived
@@ -80,7 +83,8 @@ template(name='order_view')
                     if arrived 
                         div
                         +icolor name='checked-truck' cl='ui inline image'
-                        .ui.inline.header arrived at {{from_now arrived_timestamp}} {{cal_time arrived_timestamp}}
+                        .ui.inline.header arrived {{from_now arrived_timestamp}} 
+                        .ui.small.grey.inline.header {{cal_time arrived_timestamp}}
                         +image_edit key='delivery_photo' direct=true
                         if delivery_photo                        
                             div

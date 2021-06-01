@@ -41,20 +41,30 @@ if Meteor.isClient
 
     Template.product_layout.events
         'click .buy_now': ->
-            Swal.fire({
-                title: 'confirm purchase'
-                text: "$#{@price}"
-                icon: 'question'
-                showCancelButton: true,
-                confirmButtonText: 'confirm'
-                cancelButtonText: 'cancel'
-            }).then((result) =>
-                Docs.insert 
-                    model:'order'
-                    product_id: @_id
-                    status:'submitted'
-                    purchase_price: @price
-            )
+            if @gfr_price
+                Swal.fire({
+                    title: 'confirm purchase'
+                    text: "$#{@gfr_price}"
+                    icon: 'question'
+                    showCancelButton: true,
+                    confirmButtonText: 'confirm'
+                    cancelButtonText: 'cancel'
+                }).then((result) =>
+                    Docs.insert 
+                        model:'order'
+                        product_id: @_id
+                        status:'submitted'
+                        purchase_price: @price
+                )
+            else 
+                Swal.fire({
+                    title: 'no gfr price set'
+                    # text: "$#{@gfr_price}"
+                    icon: 'question'
+                    showCancelButton: false
+                    confirmButtonText: 'confirm'
+                    # cancelButtonText: 'cancel'
+                })
         'click .subscribe': ->
             if confirm 'subscribe?'
                 Docs.update Router.current().params.doc_id,
