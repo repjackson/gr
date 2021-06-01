@@ -20,14 +20,14 @@ if Meteor.isClient
                     runner_viewed: true
                     runner_viewed_timestamp: Date.now()
                     runner_username: Meteor.user().username
-                    status: 'viewed by runner' 
+                    status: 'viewed' 
       
         'click .mark_preparing': ->
             # if confirm 'mark mark_preparing?'
             Docs.update Router.current().params.doc_id, 
                 $set:
-                    prep_started: true
-                    prep_started_timestamp: Date.now()
+                    preparing: true
+                    preparing_timestamp: Date.now()
                     status: 'preparing' 
        
         'click .mark_prepared': ->
@@ -46,6 +46,14 @@ if Meteor.isClient
                     arrived_timestamp: Date.now()
                     status: 'arrived' 
         
+        'click .mark_delivering': ->
+            # if confirm 'mark delivering?'
+            Docs.update Router.current().params.doc_id, 
+                $set:
+                    delivering: true
+                    delivering_timestamp: Date.now()
+                    status: 'delivering' 
+      
         'click .mark_delivered': ->
             # if confirm 'mark delivered?'
             Docs.update Router.current().params.doc_id, 

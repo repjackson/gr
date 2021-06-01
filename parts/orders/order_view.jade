@@ -36,7 +36,7 @@ template(name='order_view')
                         i.shield.icon
                         |runner
                     unless runner_viewed
-                        .ui.basic.circular.button.mark_viewed
+                        .ui.basic.circular.large.button.mark_viewed
                             +icolor name='eye-checked' cl='ui avatar image'
                             |mark viewed
                     if runner_viewed 
@@ -44,38 +44,39 @@ template(name='order_view')
                         +icolor name='eye-checked' cl='ui avatar image'
                         .ui.inline.header viewed at {{from_now runner_viewed_timestamp}} {{cal_time runner_viewed_timestamp}}
                         div
-                        .ui.basic.circular.button.mark_preparing
-                            +icolor name='new-product--v1' cl='ui avatar image'
-                            |preparing
+                        unless preparing
+                            .ui.basic.circular.large.button.mark_preparing
+                                +icolor name='new-product--v1' cl='ui avatar image'
+                                |preparing
                     if preparing 
                         div
                         +icolor name='new-product--v1' cl='ui inline image'
                         .ui.inline.header prep started at {{from_now preparing_timestamp}} {{cal_time preparing_timestamp}}
                         div
-                        .ui.basic.circular.button.mark_prepared
-                            +icolor name='handle-with-care' cl='ui avatar image'
-                            |prepared
-                        div
-                        .ui.basic.circular.button.mark_prepared
-                            +icolor name='handle-with-care' cl='ui avatar image'
-                            |prepared
+                        unless prepared
+                            .ui.basic.circular.large.button.mark_prepared
+                                +icolor name='handle-with-care' cl='ui avatar image'
+                                |prepared
                     if prepared 
                         div
-                        +icolor name='truck' cl='ui inline image'
-                        .ui.inline.header started delivery at {{from_now delivering_timestamp}} {{cal_time delivering_timestamp}}
+                        +icolor name='handle-with-care' cl='ui inline image'
+                        .ui.inline.header prepared at {{from_now prepared_timestamp}} {{cal_time prepared_timestamp}}
                         div
-                        .ui.basic.circular.button.mark_delivering
-                            i.truck.icon
-                            |delivering
+                        unless delivering
+                            .ui.basic.circular.large.button.mark_delivering
+                                +icolor name='truck' cl='ui inline image'
+                                |delivering
                     if delivering 
                         div
                         +icolor name='truck' cl='ui inline image'
                         .ui.inline.header started delivery at {{from_now delivering_timestamp}} {{cal_time delivering_timestamp}}
                         
                         div
-                        .ui.basic.circular.button.mark_arrived
-                            i.marker.icon
-                            |arrived
+                        unless arrived
+                            .ui.basic.circular.large.button.mark_arrived
+                                i.marker.icon
+                                +icolor name='checked-truck' cl='ui inline image'
+                                |arrived
                     if arrived 
                         div
                         +icolor name='checked-truck' cl='ui inline image'
@@ -83,7 +84,7 @@ template(name='order_view')
                         +image_edit key='delivery_photo' direct=true
                         if delivery_photo                        
                             div
-                            .ui.basic.circular.button.mark_delivery_complete
+                            .ui.basic.circular.large.button.mark_delivery_complete
                                 i.large.checkmark.icon
                                 |delivered
                     div
@@ -93,7 +94,7 @@ template(name='order_view')
                     if delivered
                         if is_author
                             +kvs key='status' value='picked_up' label='picked up' direct=true
-                            .ui.basic.circular.button.mark_arrived
+                            .ui.basic.circular.large.button.mark_arrived
                                 +icolor name='pick-up' cl='ui inline image'
                                 |mark picked up
                             
