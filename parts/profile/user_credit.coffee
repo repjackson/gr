@@ -77,35 +77,20 @@ if Meteor.isClient
 
 
     Template.user_credit.helpers
-        owner_earnings: ->
-            Docs.find
-                model:'reservation'
-                owner_username:Router.current().params.username
-                complete:true
         payments: ->
             Docs.find {
                 model:'payment'
-                _author_id: Router.current().params.user_id
+                _author_username: Router.current().params.username
             }, sort:_timestamp:-1
         deposits: ->
             Docs.find {
                 model:'deposit'
-                _author_id: Router.current().params.user_id
+                _author_username: Router.current().params.username
             }, sort:_timestamp:-1
         withdrawals: ->
             Docs.find {
                 model:'withdrawal'
-                _author_id: Router.current().params.user_id
-            }, sort:_timestamp:-1
-        received_reservations: ->
-            Docs.find {
-                model:'reservation'
-                owner_username: Router.current().params.username
-            }, sort:_timestamp:-1
-        purchased_reservations: ->
-            Docs.find {
-                model:'reservation'
-                _author_id: Router.current().params.user_id
+                _author_username: Router.current().params.username
             }, sort:_timestamp:-1
 
 

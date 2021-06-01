@@ -171,7 +171,7 @@ template(name='icolor')
     // i.icon(name=name)
     img(src="https://img.icons8.com/color/48/000000/#{name}.png" class=cl title=title)
     // img(src="https://img.icons8.com/dusk/48/000000/#{name}.png" class=cl title=title)
-template(name='icolorlg')
+template(name='ilarge')
     // i.icon(name=name)
     img(src="https://img.icons8.com/color/96/000000/#{name}.png" class=cl title=title)
 template(name='iios')
@@ -709,11 +709,14 @@ template(name='boolean_edit')
         //-     else
         //-         |no
 template(name='boolean_view')
-    div(title=title)
+    .ui.large.basic.circular.label(title=title)
         .ui.inline.grey.small.header
             if icon
                 //- i.grey.icon(class=icon)
-                +i name=icon cl='ui inline mini image'
+                if field_value
+                    +i name=icon cl='ui inline mini image'
+                else 
+                    +iios name=icon cl='ui inline mini image'
             if title
                 |#{title}
             else if label

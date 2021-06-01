@@ -17,10 +17,11 @@ template(name='user_credit')
                         .item 
                             .content
                                 .header 
-                                    |$#{amount} + #{bonus}c
+                                    |$#{deposit_amount} + #{bonus}c
                                 .description #{when} {{long_date _timestamp}}
-                                //- if is_dev
-                                +remove_button
+                                if is_admin
+                                    +remove_button
+                                    +print_this
             .column
                 .ui.header 
                     i.shield.icon

@@ -99,7 +99,7 @@ template(name='shop')
                         each product_docs
                             +product_card
                 else
-                    .ui.stackable.centered.three.column.grid
+                    .ui.stackable.centered.four.column.grid
                         each product_docs
                             +product_card
             else 
@@ -135,13 +135,13 @@ template(name='set_product_limit')
 
 
 template(name='product_card')
-    .center.aligned.column.zoomer(class=product_card_class title=ingredients)
+    .center.aligned.column.zoomer.rounded(class=product_card_class title=ingredients)
         if rescued 
             .ui.top.right.attached.blue.label rescued
         if local 
             .ui.top.right.attached.orange.label local
         a(href="/product/#{_id}") 
-            img.ui.image(src="{{c.url image_id width=400 height=300 crop='pad'}}")
+            img.ui.rounded.image(src="{{c.url image_id width=400 height=300 crop='pad'}}")
         .content
             a.ui.inline.header(href="/product/#{_id}") 
                 //- |#{_author.name}'s
