@@ -8,6 +8,13 @@ template(name='order_view')
                             a(href="/product/#{_id}")
                                 img.ui.rounded.image(src="{{c.url image_id width=400 height=400}}")
                             a.ui.header(href="/product/#{_id}") #{title}
+                            div
+                            .ui.inline.header 
+                                +i name='ingredients' cl='uii avatar image'
+                                |ingredients
+                            each ingredients
+                                .ui.small.basic.circular.label #{this}
+                
                             //- .ui.header #{cook_tip} cook tip
                             // .ui.header $#{order_total_transaction_amount} 
                             //     small total transaction amount
@@ -116,9 +123,6 @@ template(name='order_view')
                             small for 
                             strong ${{fixed order_price}}
                     div
-                    .ui.inline.header ingredients
-                    each order_product.ingredients
-                        .ui.label #{this}
                     if pickup
                         .ui.header
                             |pickup

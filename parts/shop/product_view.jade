@@ -25,7 +25,7 @@ template(name='product_layout')
                             div 
                             +link_view key='product_link' label='nude foods link' direct=true
                             +text_view key='size_description' label='size description'  direct=true
-                            if is_food                            
+                            if food                            
                                 +boolean_view key='gluten_free' label='gluten free' direct=true icon='no-gluten'
                                 +boolean_view key='vegetarian' label='vegetarian' direct=true icon='vegetarian-mark'
                                 +boolean_view key='no_sugar_added' label='no sugar added' direct=true icon='no-sugar2'
@@ -83,7 +83,27 @@ template(name='product_main')
     +voting_full
         
         
-template(name='product_inventory')      
+template(name='product_inventory')   
+    .ui.header 
+        i.shield.icon
+        |inventory
+    if is_admin
+        a.ui.icon.basic.button.add_inventory
+            i.plus.icon
+    .ui.list
+        each inventory_items
+            .item 
+                unless editing_this
+                    .ui.inline.header id: #{id}
+                    .ui.inline.header location: #{location}
+                    i.edit.circular.link.icon.edit_inventory_item
+                if editing_this
+                    +number_edit key='id' label='id number' direct=true
+                    +text_edit key='location' label='location' icon='marker' direct=true
+                    i.checkmark.green.circular.link.icon.save_inventory_item
+                
+                
+                
 template(name='product_recipes')
     .ui.header recipes
     each product_recipes
@@ -143,20 +163,21 @@ template(name='product_order_card')
                 |cancel
         +order_status_icons
                 
-template(name='order_status_icons')                
-    if runner_viewed
-        +icolor name='eye-checked' cl='ui avatar image'
-    if preparing
-        +icolor name='new-product--v1' cl='ui avatar image'
-    if prepared
-        +icolor name='handle-with-care' cl='ui inline image'
-    if arrived
-        +icolor name='checked-truck' cl='ui inline image'
-    if delivered
-        +icolor name='checkmark' cl='ui inline image'
-    
-    if delivery_photo
-        +image_view key='delivery_photo' direct=true cl='ui small image'
+template(name='order_status_icons')  
+    a.zoomer(href="/order/#{_id}")
+        if runner_viewed
+            +icolor name='eye-checked' cl='ui avatar image'
+        if preparing
+            +icolor name='new-product--v1' cl='ui avatar image'
+        if prepared
+            +icolor name='handle-with-care' cl='ui inline image'
+        if arrived
+            +icolor name='checked-truck' cl='ui inline image'
+        if delivered
+            +icolor name='checkmark' cl='ui inline image'
+        
+        if delivery_photo
+            +image_view key='delivery_photo' direct=true cl='ui tiny inline image'
 
 
 

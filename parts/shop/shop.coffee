@@ -228,6 +228,9 @@ if Meteor.isClient
             Session.set('product_sort_label', @label)
             Session.set('product_sort_icon', @icon)
 
+    Template.set_product_sort_key.helpers
+        shop_sort_class: ->
+            if Session.equals('product_sort_key', @key) then 'active' else 'basic'
 
 
 if Meteor.isServer
@@ -252,7 +255,7 @@ if Meteor.isServer
         if doc_sort_direction
             sort_direction = parseInt(doc_sort_direction)
         self = @
-        match = {model:'product', app:'nf'}
+        match = {model:'product', app:$in:['nf','grm']}
         if picked_ingredients.length > 0
             match.ingredients = $all: picked_ingredients
             # sort = 'price_per_serving'
@@ -283,6 +286,7 @@ if Meteor.isServer
 
         console.log 'product match', match
         console.log 'sort key', sort_key
+        console.log 'limit', limit
         console.log 'sort direction', sort_direction
         Docs.find match,
             sort:"#{sort_key}":sort_direction
@@ -309,7 +313,7 @@ if Meteor.isServer
     
         # console.log picked_ingredients
         self = @
-        match = {model:'product', app:'nf'}
+        match = {model:'product', app:$in:['nf','grm']}
         if picked_ingredients.length > 0
             match.ingredients = $all: picked_ingredients
             # sort = 'price_per_serving'
@@ -348,7 +352,7 @@ if Meteor.isServer
         console.log 'picked ingredients', picked_ingredients
 
         self = @
-        match = {app:'nf'}
+        match = {app:$in:['nf','grm']}
         match.model = 'product'
         if view_vegan
             match.vegan = true

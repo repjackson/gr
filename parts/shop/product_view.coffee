@@ -33,18 +33,38 @@ if Meteor.isClient
         @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
         # @autorun => Meteor.subscribe 'product_from_product_id', Router.current().params.doc_id
         @autorun => Meteor.subscribe 'orders_from_product_id', Router.current().params.doc_id
+        @autorun => Meteor.subscribe 'inventory_from_product_id', Router.current().params.doc_id
         # @autorun => Meteor.subscribe 'subs_from_product_id', Router.current().params.doc_id
     Template.product_layout.onRendered ->
         Meteor.call 'log_view', Router.current().params.doc_id
         # @autorun => Meteor.subscribe 'ingredients_from_product_id', Router.current().params.doc_id
 
-
+    Template.product_inventory.events
+        'click .add_inventory': ->
+            new_id = Docs.insert 
+                model:'inventory_item'
+                product_id:@_id
+            Session.set('editing_inventory_id', @_id)
+        'click .edit_inventory_item': -> 
+            Session.set('editing_inventory_id', @_id)
+        'click .save_inventory_item': -> 
+            Session.set('editing_inventory_id', null)
+        
+    Template.product_inventory.helpers
+        editing_this: ->
+            Session.equals('editing_inventory_id', @_id)
+        inventory_items: ->
+            Docs.find 
+                model:'inventory_item'
+                product_id:@_id
+            
+        
     Template.product_layout.events
         'click .buy_now': ->
-            if @gfr_price
+            if @grm_price
                 Swal.fire({
                     title: 'confirm purchase'
-                    text: "$#{@gfr_price}"
+                    text: "$#{@grm_price}"
                     icon: 'question'
                     showCancelButton: true,
                     confirmButtonText: 'confirm'
@@ -60,8 +80,8 @@ if Meteor.isClient
                 )
             else 
                 Swal.fire({
-                    title: 'no gfr price set'
-                    # text: "$#{@gfr_price}"
+                    title: 'no grm price set'
+                    # text: "$#{@grm_price}"
                     icon: 'question'
                     showCancelButton: false
                     confirmButtonText: 'confirm'
@@ -232,6 +252,12 @@ if Meteor.isServer
         # product = Docs.findOne product_id
         Docs.find
             model:'order'
+            product_id:product_id
+            
+    Meteor.publish 'inventory_from_product_id', (product_id)->
+        # product = Docs.findOne product_id
+        Docs.find
+            model:'inventory_item'
             product_id:product_id
             
     Meteor.publish 'subs_from_product_id', (product_id)->

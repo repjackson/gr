@@ -100,7 +100,7 @@ template(name='user_dashboard')
                 i.receipt.icon
                 |orders
             .ui.cards 
-                each user_orders
+                each latest_orders
                     a.ui.card(href="/order/#{_id}")
                         .content
                             .ui.basic.label

@@ -62,7 +62,14 @@ if Meteor.isClient
     #         "user_#{Router.current().params.group}"
 
     Template.user_layout.helpers
-
+        latest_orders: ->
+            Docs.find({
+                model:'order'
+            }, 
+                sort:
+                    _timestamp:-1
+                limit:5
+            )
     Template.user_layout.events
         'click .logout_other_clients': ->
             Meteor.logoutOtherClients()
