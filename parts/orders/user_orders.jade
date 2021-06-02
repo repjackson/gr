@@ -10,9 +10,9 @@ template(name='profile_order_item')
             .four.wide.column
                 with order_product
                     //- img.ui.mini.image(src=image)
-                    +image_view key='image_id' direct=true cl='zoomer ui fluid image'
+                    +image_view key='image_id' direct=true cl='zoomer ui tiny image'
             .twelve.wide.column
-                .ui.header #{order_product.title}
+                .ui.inline.header #{order_product.title}
                 a.ui.small.header.inline.lowercase(href="/order/#{_id}")
                     |#{order_amount}c
                 .ui.inline.header status: 
@@ -25,8 +25,14 @@ template(name='profile_order_item')
                     |#{status}
                 // .ui.inline.header product_id: #{product_id}
                 
-                a.ui.circular.icon.big.button(href="/order/#{_id}")
+                a.ui.circular.icon.big.basic.button(href="/order/#{_id}")
                     i.right.chevron.large.icon
+                .ui.basic.label
+                    i.clock.icon
+                    |#{status}
+                |#{when}
+                +order_status_icons
+                    
                 if in_dev 
                     +print_this
                 if is_admin

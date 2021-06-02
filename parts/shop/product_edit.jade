@@ -36,7 +36,9 @@ template(name='product_edit')
                     div
                     +number_edit key='delivery_expected_hours' label='expected delivery hours' icon='truck' direct=true
                     // +array_edit key='location_tags' label='location tags' direct=true
+                    div
                     +text_edit key='size_description' label='size description'  direct=true
+                    div
                     +html_edit key='description' label='description' direct=true
                     if can_delete
                         .ui.red.button.delete_product

@@ -2,6 +2,7 @@ template(name='shop')
     .ui.stackable.padded.grid
         .four.wide.column
             .ui.inline.header
+                i.large.shop.icon
                 |#{product_count}
                 |products
             .ui.icon.input
@@ -34,7 +35,7 @@ template(name='shop')
             each ingredients
                 button.ui.compact.tertiary.circular.button.pick_ingredient(tabindex="0" class=result_class title=count) #{title}
                     //- small #{count}
-        .twelve.wide.column.scrolling
+        .twelve.wide.column
             // each picked_sections
             //     button.ui.blue.compact.small.circular.button.unpick_section(tabindex='0')
             //         //- i.remove.icon
@@ -73,19 +74,19 @@ template(name='shop')
                 .spacer 
             if subs_ready
                 if one_post
-                    .ui.stackable.centered.one.column.grid
+                    .ui.stackable.center.aligned.one.column.grid.scrolling
                         each product_docs
                             +product_card
                 else if two_posts
-                    .ui.stackable.centered.two.column.grid
+                    .ui.stackable.center.aligned.two.column.grid.scrolling
                         each product_docs
                             +product_card
                 else if three_posts
-                    .ui.stackable.centered.three.column.grid
+                    .ui.stackable.center.aligned.three.column.grid.scrolling
                         each product_docs
                             +product_card
                 else
-                    .ui.stackable.centered.four.column.grid
+                    .ui.stackable.center.aligned.four.column.grid.scrolling
                         each product_docs
                             +product_card
             else 
@@ -128,7 +129,7 @@ template(name='product_card')
             .ui.top.right.attached.green.corner.label(title='local')
                 i.marker.icon
         a(href="/product/#{_id}") 
-            img.ui.rounded.image(src="{{c.url image_id width=400 height=300 crop='fit'}}")
+            img.ui.rounded.centered.image(src="{{c.url image_id width=400 height=300 crop='fit'}}")
         .content
             a.ui.inline.header(href="/product/#{_id}") 
                 //- |#{_author.name}'s

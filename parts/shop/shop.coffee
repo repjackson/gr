@@ -18,7 +18,6 @@ if Meteor.isClient
             picked_sections.array()
             Session.get('view_vegan')
             Session.get('view_gf')
-            
             Session.get('product_query')
             Session.get('product_limit')
             Session.get('product_sort_key')
@@ -218,12 +217,12 @@ if Meteor.isClient
 
     Template.set_product_limit.events
         'click .set_limit': ->
-            console.log @
+            # console.log @
             Session.set('product_limit', @amount)
 
     Template.set_product_sort_key.events
         'click .set_sort': ->
-            console.log @
+            # console.log @
             Session.set('product_sort_key', @key)
             Session.set('product_sort_label', @label)
             Session.set('product_sort_icon', @icon)
@@ -245,7 +244,7 @@ if Meteor.isServer
         doc_sort_key
         doc_sort_direction
         )->
-        # console.log picked_ingredients
+        console.log picked_ingredients
         if doc_limit
             limit = doc_limit
         else
@@ -271,7 +270,7 @@ if Meteor.isServer
         if view_gf
             match.gluten_free = true
         if product_query and product_query.length > 1
-            console.log 'searching product_query', product_query
+            # console.log 'searching product_query', product_query
             match.title = {$regex:"#{product_query}", $options: 'i'}
             # match.tags_string = {$regex:"#{query}", $options: 'i'}
 
@@ -284,10 +283,10 @@ if Meteor.isServer
         #         match["#{key}"] = $all: key_array
             # console.log 'current facet filter array', current_facet_filter_array
 
-        console.log 'product match', match
-        console.log 'sort key', sort_key
-        console.log 'limit', limit
-        console.log 'sort direction', sort_direction
+        # console.log 'product match', match
+        # console.log 'sort key', sort_key
+        # console.log 'limit', limit
+        # console.log 'sort direction', sort_direction
         Docs.find match,
             sort:"#{sort_key}":sort_direction
             # sort:_timestamp:-1
@@ -349,7 +348,7 @@ if Meteor.isServer
         )->
         # console.log 'dummy', dummy
         # console.log 'query', query
-        console.log 'picked ingredients', picked_ingredients
+        # console.log 'picked ingredients', picked_ingredients
 
         self = @
         match = {app:$in:['nf','grm']}
@@ -449,7 +448,7 @@ if Meteor.isClient
         # @autorun => Meteor.subscribe 'model_docs', 'food'
     Template.product_card.events
         'click .quickbuy': ->
-            console.log @
+            # console.log @
             Session.set('quickbuying_id', @_id)
             # $('.ui.dimmable')
             #     .dimmer('show')
