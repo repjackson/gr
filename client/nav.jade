@@ -1,6 +1,6 @@
 template(name='nav')
     // https://fomantic-ui.com/elements/icon.html#/icon
-    #topnav.topnav.ui.attached.borderless.inverted.large.menu
+    #topnav.topnav.ui.attached.borderless.large.menu
         // if is_loading
         //     .icon.item
         //         i.big.loading.grey.food.icon.cancel
@@ -8,10 +8,23 @@ template(name='nav')
         //     a.icon.item.toggle_sidebar.no_blink
         //         i.bars.large.icon
                 
-        a.header.icon.item.zoomer(href='/' class="{{isActivePath '/'}}")
-            // +i name='food' cl='ui inline mini image'
-            i.store.large.icon
-            // span.mobile.hidden nude foods market
+        a.header.item.zoomer(href='/' class="{{isActivePath '/'}}")
+            i.home.large.icon
+            |gold run
+        a.header.icon.item.zoomer(href='/' class="{{isActivePath '/deliveries'}}")
+            i.truck.large.icon
+        a.header.icon.item.zoomer(href='/posts' class="{{isActivePath '/posts'}}")
+            i.blog.large.icon
+        a.header.icon.item.zoomer(href='/services' class="{{isActivePath '/services'}}")
+            i.paint.brush.large.icon
+        a.header.icon.item.zoomer(href='/images' class="{{isActivePath '/images'}}")
+            i.picture.large.icon
+        a.header.icon.item.zoomer(href='/gym' class="{{isActivePath '/gym'}}")
+            i.dumbbell.large.icon
+        a.header.icon.item.zoomer(href='/fix' class="{{isActivePath '/fix'}}")
+            i.wrench.large.icon
+        a.header.icon.item.zoomer(href='/' class="{{isActivePath '/users'}}")
+            i.users.large.icon
         .right.menu
             if currentUser
                 // a.icon.item(href="/alerts" class="{{isActivePath '/alerts'}}")
@@ -20,7 +33,7 @@ template(name='nav')
                     // i.wallet.icon
                     // .ui.mini.image.wallet
                     //     +i name='wallet' cl=''
-                    .ui.small.inverted.header ${{int currentUser.credit}}
+                    .ui.small.header ${{int currentUser.credit}}
                     // i.cart.icon
                 // a.item(href="/user/#{currentUser.username}/credit" class="{{isActiveRoute regex='user_credit'}}" title='your credits')
                 //     .ui.inline.header #{currentUser.credit}f
@@ -147,7 +160,7 @@ template(name='recent_alert')
             
             
 template(name='right_sidebar')
-    .ui.right.sidebar.vertical.inverted.menu
+    .ui.right.sidebar.vertical.menu
         // a.item.toggle_rightbar.no_blink(href="/user/#{currentUser.username}" class="{{isActiveRoute 'user_layout'}}")
         //     img.ui.avatar.compact.image(src="{{c.url 'one_logo' height=200 width=200 gravity='face' crop='fill'}}")
         //     |#{currentUser.name}
@@ -194,7 +207,7 @@ template(name='right_sidebar')
 
 
 template(name='left_sidebar')
-    .ui.left.sidebar.vertical.inverted.menu
+    .ui.left.sidebar.vertical.menu
         // a.item.toggle_sidebar.no_blink(href="/" class="{{isActiveRoute '/'}}")
         //     img.ui.avatar.compact.image(src="{{c.url 'one_logo' height=200 width=200 gravity='face' crop='fill'}}")
         //     |One
