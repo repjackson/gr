@@ -151,7 +151,7 @@ template(name='icon_view')
         //- img(src="https://img.icons8.com/ios/48/000000/#{field_value}.png")
 template(name='i')
     //- i.icon(class=name)
-    img(src="https://img.icons8.com/color/48/000000/#{name}.png" class=cl title=title)
+    img(src="https://img.icons8.com/ios/48/000000/#{name}.png" class=cl title=title)
     // img(src="https://img.icons8.com/dusk/64/000000/#{name}.png" class=cl title=title)
     // img(src="https://img.icons8.com/fluent/48/000000/#{name}.png" class=cl title=title)
     // img(src="https://img.icons8.com/doodle/48/000000/#{name}.png" class=cl title=title)
@@ -529,7 +529,7 @@ template(name='array_edit')
                 .ui.basic.large.label.touch_element
                     i.delete.icon.remove_element
                     |#{this}
-                // .ui.compact.circular.button.pick_tag
+                // .ui.compact.button.pick_tag
                 //     |#{this}
             else
                 a.ui.basic.label.pick_tag
@@ -553,13 +553,13 @@ template(name='array_edit')
 //     if field_value
 //         each field_value
 //             if in_dev
-//                 .ui.large.circular.label
+//                 .ui.large.label
 //                     i.delete.icon.remove_element
 //                     |#{this}
-//                 .ui.compact.circular.button.pick_tag
+//                 .ui.compact.button.pick_tag
 //                     |#{this}
 //             else
-//                 .ui.compact.circular.button.pick_tag
+//                 .ui.compact.button.pick_tag
 //                     |#{this}
             
                 
@@ -683,7 +683,7 @@ template(name='skvs')
 
 template(name='boolean_edit')
     //- div
-    .ui.circular.button.toggle_boolean(class="#{boolean_toggle_class} #{cl}" title=tooltip)
+    .ui.button.toggle_boolean(class="#{boolean_toggle_class} #{cl}" title=tooltip)
         if field_value
             i.green.checkmark.icon
         else
@@ -713,7 +713,7 @@ template(name='boolean_edit')
         //-     else
         //-         |no
 template(name='boolean_view')
-    .ui.large.basic.circular.label(title=title)
+    .ui.large.basic.label(title=title)
         .ui.inline.grey.small.header
             if icon
                 //- i.grey.icon(class=icon)
@@ -996,7 +996,7 @@ template(name='single_user_edit')
             .ui.inline.header
                 img.ui.avatar.image(src="{{c.url profile_image_id width=100 height=100 gravity='face' crop='fill'}}" class=currentUser.invert_class)
                 |#{name}
-            i.pull_user.remove.link.circular.icon
+            i.pull_user.remove.link.icon
 
 
 template(name='single_user_view')
@@ -1050,7 +1050,7 @@ template(name='multi_user_edit')
             .ui.inline.header
                 img.ui.avatar.image(src="{{c.url profile_image_id width=100 height=100 gravity='face' crop='fill'}}" class=currentUser.invert_class)
                 |#{name}
-            i.pull_user.remove.link.circular.icon
+            i.pull_user.remove.link.icon
 
 template(name='multi_doc_input')
     //- .ui.form
