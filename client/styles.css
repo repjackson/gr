@@ -138,7 +138,7 @@ body {
 }
 
 .rounded {
-     border-radius: 10px !important; 
+     /*border-radius: 10px !important; */
 }
 
 .spacer{
@@ -259,7 +259,7 @@ img {
 }
 
 .image:not(.circular), img {
-    border-radius:10px !important; 
+    /*border-radius:10px !important; */
     filter: invert(.9) !important;
 }
 
