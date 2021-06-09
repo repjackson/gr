@@ -1,0 +1,10 @@
+template(name='gym')    
+    .ui.header 
+        |gym
+    .ui.button.self_checkin
+        |checkin
+    if checked_in
+        .ui.button.checkout
+            |checkout
+    each checkin_sessions
+        .ui.header #{username}
