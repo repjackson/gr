@@ -61,10 +61,10 @@ if Meteor.isClient
         
     Template.product_layout.events
         'click .buy_now': ->
-            if @grm_price
+            if @gr_price
                 Swal.fire({
                     title: 'confirm purchase'
-                    text: "$#{@grm_price}"
+                    text: "$#{@gr_price}"
                     icon: 'question'
                     showCancelButton: true,
                     confirmButtonText: 'confirm'
@@ -80,8 +80,8 @@ if Meteor.isClient
                 )
             else 
                 Swal.fire({
-                    title: 'no grm price set'
-                    # text: "$#{@grm_price}"
+                    title: 'no gr price set'
+                    # text: "$#{@gr_price}"
                     icon: 'question'
                     showCancelButton: false
                     confirmButtonText: 'confirm'

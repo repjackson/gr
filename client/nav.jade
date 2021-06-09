@@ -11,6 +11,8 @@ template(name='nav')
         a.header.item.zoomer(href='/' class="{{isActivePath '/'}}")
             i.home.large.icon
             |gold run
+        a.header.icon.item.zoomer(href='/gym' class="{{isActivePath '/gym'}}")
+            i.dumbbell.large.icon
         a.header.icon.item.zoomer(href='/' class="{{isActivePath '/deliveries'}}")
             i.truck.large.icon
         a.header.icon.item.zoomer(href='/posts' class="{{isActivePath '/posts'}}")
@@ -19,8 +21,6 @@ template(name='nav')
             i.paint.brush.large.icon
         a.header.icon.item.zoomer(href='/images' class="{{isActivePath '/images'}}")
             i.picture.large.icon
-        a.header.icon.item.zoomer(href='/gym' class="{{isActivePath '/gym'}}")
-            i.dumbbell.large.icon
         a.header.icon.item.zoomer(href='/fix' class="{{isActivePath '/fix'}}")
             i.wrench.large.icon
         a.header.icon.item.zoomer(href='/' class="{{isActivePath '/users'}}")

@@ -1,10 +1,15 @@
 template(name='gym')    
     .ui.header 
         |gym
-    .ui.button.self_checkin
-        |checkin
-    if checked_in
-        .ui.button.checkout
+    if currentUser.gym_checkedin
+        .ui.big.button.checkout
             |checkout
+    else
+        .ui.big.button.self_checkin
+            |checkin
+    .ui.header checkedin users
+    each checkedin_users
+        .ui.header #{checkedin_username}
     each checkin_sessions
-        .ui.header #{username}
+        .ui.header #{checkedin_username}
+    
