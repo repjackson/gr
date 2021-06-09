@@ -8,8 +8,8 @@ template(name='facet_staff_select')
             else
                 div(class=doc_classes)
                     |#{staff}
-            if is_admin
-                +session_edit_icon
+            // if is_admin
+            //     +session_edit_icon
     else
         if is_admin
             .ui.header no doc found
@@ -29,8 +29,8 @@ template(name='inline_doc')
                 if body
                     div(class=doc_classes)
                         |{{nl2br body}}
-            if is_staff
-                +session_edit_icon
+            // if is_staff
+            //     +session_edit_icon
     else
         if is_admin
             .ui.header no doc found
