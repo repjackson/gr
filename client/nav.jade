@@ -13,17 +13,20 @@ template(name='nav')
             |gold run
         a.header.icon.item.zoomer(href='/gym' class="{{isActivePath '/gym'}}")
             i.dumbbell.large.icon
-        a.header.icon.item.zoomer(href='/' class="{{isActivePath '/deliveries'}}")
-            i.truck.large.icon
-        a.header.icon.item.zoomer(href='/posts' class="{{isActivePath '/posts'}}")
-            i.blog.large.icon
-        a.header.icon.item.zoomer(href='/services' class="{{isActivePath '/services'}}")
-            i.paint.brush.large.icon
-        a.header.icon.item.zoomer(href='/images' class="{{isActivePath '/images'}}")
-            i.picture.large.icon
-        a.header.icon.item.zoomer(href='/fix' class="{{isActivePath '/fix'}}")
-            i.wrench.large.icon
-        a.header.icon.item.zoomer(href='/' class="{{isActivePath '/users'}}")
+        // a.header.icon.item.zoomer(href='/deliveries' class="{{isActivePath '/deliveries'}}")
+        //     i.truck.large.icon
+        // a.header.icon.item.zoomer(href='/posts' class="{{isActivePath '/posts'}}")
+        //     i.blog.large.icon
+        // a.header.icon.item.zoomer(href='/services' class="{{isActivePath '/services'}}")
+        //     i.paint.brush.large.icon
+        a.header.icon.item.zoomer(href='/buildings' class="{{isActivePath '/buildings'}}")
+            i.building.large.icon
+        a.header.icon.item.zoomer(href='/healthclub' class="{{isActivePath '/healthclub'}}")
+            i.building.large.icon
+            |healthclub
+        // a.header.icon.item.zoomer(href='/maintenance' class="{{isActivePath '/maintenance'}}")
+        //     i.wrench.large.icon
+        a.header.icon.item.zoomer(href='/users' class="{{isActivePath '/users'}}")
             i.users.large.icon
         .right.menu
             if currentUser

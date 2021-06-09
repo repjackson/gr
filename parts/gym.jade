@@ -1,15 +1,23 @@
 template(name='gym')    
-    .ui.header 
-        |gym
-    if currentUser.gym_checkedin
-        .ui.big.button.checkout
-            |checkout
-    else
-        .ui.big.button.self_checkin
-            |checkin
-    .ui.header checkedin users
-    each checkedin_users
-        .ui.header #{checkedin_username}
-    each checkin_sessions
-        .ui.header #{checkedin_username}
-    
+    .ui.stackable.padded.grid
+        .sixteen.wide.column
+            .ui.header 
+                i.dumbbell.icon
+                |gym
+            
+            if currentUser.gym_checkedin
+                .ui.big.button.checkout
+                    |checkout
+            else
+                .ui.big.button.self_checkin
+                    |checkin
+            .ui.header checkedin users
+            each checkedin_users
+                .ui.header #{checkedin_username}
+            .ui.header 
+                |check in sessions
+            .ui.link.list
+                each checkin_sessions
+                    .item
+                        |#{checkedin_username} #{when}
+    +healthclub

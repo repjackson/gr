@@ -2,8 +2,8 @@ if Meteor.isClient
     Template.nav.onCreated ->
         @autorun => Meteor.subscribe 'me'
         # @autorun => Meteor.subscribe 'all_users'
-        @autorun => Meteor.subscribe 'my_unread_messages'
-        @autorun => Meteor.subscribe 'global_stats'
+        # @autorun => Meteor.subscribe 'my_unread_messages'
+        # @autorun => Meteor.subscribe 'global_stats'
     
     Template.nav.onRendered ->
         Meteor.setTimeout ->
